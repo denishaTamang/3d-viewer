@@ -33,7 +33,7 @@
         import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
         const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x050b1a);
+     scene.background = new THREE.Color(0x000000);  // Pure Black
         scene.fog = new THREE.FogExp2(0x050b1a, 0.008);
 
         const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -51,7 +51,7 @@
         controls.enableDamping = true;
         controls.dampingFactor = 0.05;
         controls.autoRotate = true;
-        controls.autoRotateSpeed = 2;
+        controls.autoRotateSpeed = 3;  // Faster rotation
         controls.enableZoom = true;
         controls.enablePan = true;
 
@@ -82,7 +82,7 @@
         scene.add(gridHelper);
         
         // Floating particles
-        const particleCount = 800;
+       const particleCount = 1500;  // 800 bata 1500 ma change
         const particlesGeometry = new THREE.BufferGeometry();
         const particlePositions = new Float32Array(particleCount * 3);
         for (let i = 0; i < particleCount; i++) {
@@ -91,7 +91,7 @@
             particlePositions[i*3+2] = (Math.random() - 0.5) * 20 - 5;
         }
         particlesGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
-        const particlesMaterial = new THREE.PointsMaterial({ color: 0x88aaff, size: 0.05, transparent: true, opacity: 0.6 });
+        const particlesMaterial = new THREE.PointsMaterial({ color: 0xffaa44 // Gold/Yellow color, size: 0.05, transparent: true, opacity: 0.6 });
         const particles = new THREE.Points(particlesGeometry, particlesMaterial);
         scene.add(particles);
         
