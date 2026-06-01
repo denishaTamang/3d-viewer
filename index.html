@@ -187,7 +187,24 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
         }
         
-        console.log('3D Viewer Ready! Upload any GLB file.');
+        // Add loading indicator
+const loadingDiv = document.createElement('div');
+loadingDiv.style.position = 'absolute';
+loadingDiv.style.bottom = '100px';
+loadingDiv.style.left = '50%';
+loadingDiv.style.transform = 'translateX(-50%)';
+loadingDiv.style.background = 'rgba(0,0,0,0.7)';
+loadingDiv.style.color = 'white';
+loadingDiv.style.padding = '10px 20px';
+loadingDiv.style.borderRadius = '8px';
+loadingDiv.style.zIndex = '100';
+loadingDiv.innerHTML = '🔄 Loading 3D Model...';
+document.body.appendChild(loadingDiv);
+
+// Hide loading when model is ready
+setTimeout(() => {
+    loadingDiv.style.display = 'none';
+}, 2000);
     </script>
 </body>
 </html>
