@@ -176,7 +176,17 @@
             controls.update(); // Update controls (auto-rotate if enabled)
             renderer.render(scene, camera);
         }
-        
+        // Fallback: If default model doesn't show, create a visible cube
+setTimeout(() => {
+    if (!defaultModel.visible) {
+        const fallbackCube = new THREE.Mesh(
+            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.MeshStandardMaterial({ color: 0xff6600, emissive: 0x442200 })
+        );
+        fallbackCube.castShadow = true;
+        scene.add(fallbackCube);
+    }
+}, 3000);
         animate();
         
         // Handle window resize
