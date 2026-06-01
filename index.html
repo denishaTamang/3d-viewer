@@ -112,7 +112,27 @@
         let currentModel = null;
         
         // Load a default sample model (rotating torus knot)
-        const defaultGeometry = new THREE.TorusKnotGeometry(0.8, 0.25, 128, 16, 3, 4);
+        const defaultGeometry = new THREE.SphereGeometry(0.8, 32, 32);  // Simple sphere works 100%
+        // Add loading indicator
+const loadingDiv = document.createElement('div');
+loadingDiv.style.position = 'absolute';
+loadingDiv.style.bottom = '100px';
+loadingDiv.style.left = '50%';
+loadingDiv.style.transform = 'translateX(-50%)';
+loadingDiv.style.background = 'rgba(0,0,0,0.7)';
+loadingDiv.style.color = 'white';
+loadingDiv.style.padding = '10px 20px';
+loadingDiv.style.borderRadius = '8px';
+loadingDiv.style.zIndex = '100';
+loadingDiv.innerHTML = '🔄 Loading 3D Model...';
+document.body.appendChild(loadingDiv);
+
+// Hide loading after 2 seconds
+setTimeout(() => {
+    if (loadingDiv) {
+        loadingDiv.style.display = 'none';
+    }
+}, 2000);
         const defaultMaterial = new THREE.MeshStandardMaterial({ color: 0x66aaff, metalness: 0.7, roughness: 0.3, emissive: 0x113355 });
         const defaultModel = new THREE.Mesh(defaultGeometry, defaultMaterial);
         defaultModel.castShadow = true;
